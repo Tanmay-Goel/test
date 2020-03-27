@@ -1,0 +1,181 @@
+main activity.java
+
+package com.example.app;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+public class MainActivity extends AppCompatActivity {
+    Button login,register;
+    EditText  username,password;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        username=findViewById(R.id.etusername);
+        password=findViewById(R.id.etpassword);
+        login=findViewById(R.id.btregister);
+        //register=findViewById(R.id.reg);
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String user=username.getText().toString();
+                String pass=password.getText().toString();
+                if (user == "user")
+                {
+                    if(pass == "123") {
+                        Intent i = new Intent(MainActivity.this, Main2Activity.class);
+                        startActivity(i);
+                    }
+                }
+            }
+        });
+/*
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(String.valueOf(MainActivity.this));
+                startActivity(intent);
+            }
+        }); */
+    }
+}
+----------------------------------------------------------------------------------------------------------------
+main2activity.java
+
+package com.example.app;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+
+public class Main2Activity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+
+        Intent i = getIntent();
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------
+android manifest
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.app">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Main2Activity"></activity>
+    </application>
+
+</manifest>
+
+------------------------------------------------------------------------------------------
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30dp"
+    tools:context=".Login">
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Username"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/etusername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter user name"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Password"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/etpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btregister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="30dp"
+        android:text="Login"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="Register here"
+        android:textSize="24sp" />
+</LinearLayout>
+
+----------------------------------------------------------------
+activity_main2.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main2Activity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="home page"
+        tools:layout_editor_absoluteX="214dp"
+        tools:layout_editor_absoluteY="329dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
